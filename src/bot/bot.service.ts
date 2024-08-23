@@ -19,7 +19,7 @@ export class BotService implements OnModuleInit {
             try {
                 if (msg.text == '/start' && msg.chat.id === 6399340874) {
                     console.log(msg)
-                    await bot.sendMessage(msg.chat.id, `<b> Привет, ${msg.from.first_name ? msg.from.first_name : msg.from.username} 👾 </b> \n Жми <b>GO</b> 🚀 чтобы начать  или переходи по ссылке <a href='https://calc-jam-app.vercel.app/'> <b> ЗДЕСЬ 📈 </b></a> `,
+                    await bot.sendMessage(msg.chat.id, `<b> Привет, ${msg.from.first_name ? msg.from.first_name : msg.from.username} 👾 </b> \n Жми <b>GO</b>  🚀 чтобы начать  или переходи по ссылке <a href='https://calc-jam-app.vercel.app/'> <b> ЗДЕСЬ 📈 </b></a> `,
                         {
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
