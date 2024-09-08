@@ -1,8 +1,8 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Post, Res } from '@nestjs/common';
 import { Response, Request } from 'express';
-import { UserService } from './user.service';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { GoFuturesUserDTO } from 'src/db/user/user.dto';
+import { UserService } from './user.service';
 
 @Controller('')
 export class UserController {
