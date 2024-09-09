@@ -28,7 +28,7 @@ export class BotService implements OnModuleInit {
                                     [{
                                         text: 'Play',
                                         web_app: {
-                                            url: 'https://3fda-91-149-142-24.ngrok-free.app'
+                                            url: 'https://190b-91-149-142-24.ngrok-free.app'
                                         }
                                     }]
                                 ]
