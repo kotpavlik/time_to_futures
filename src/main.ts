@@ -11,7 +11,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin:
-        ['http://localhost:5173', 'https://190b-91-149-142-24.ngrok-free.app', 'https://time-to-futures-tma.vercel.app'],
+        ['http://localhost:5173', 'https://bbf2-91-149-142-24.ngrok-free.app', 'https://time-to-futures-tma.vercel.app'],
       credentials: true,
       allowedHeaders: ['Content-Type', 'Authorization'],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
