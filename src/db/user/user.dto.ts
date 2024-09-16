@@ -43,6 +43,7 @@ export class GoFuturesUserDTO {
     @IsString()
     readonly my_referal_link: string
 
+
     @ApiProperty({ example: 123414125, description: 'person who invite you' })
     @IsNumber() @IsNotEmpty()
     readonly my_referer: number

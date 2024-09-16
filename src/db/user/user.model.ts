@@ -30,6 +30,7 @@ export class AI_User {
     @Prop({ type: Number, default: 1 })
     LVL: number
 
+
     @Prop({ type: Number, default: 0 })
     successQuestion: number
 
