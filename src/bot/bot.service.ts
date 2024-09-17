@@ -40,6 +40,7 @@ export class BotService implements OnModuleInit {
 
                 console.log(error);
 
+
             }
         })
 
