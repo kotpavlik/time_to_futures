@@ -28,7 +28,7 @@ export class BotService implements OnModuleInit {
                                     [{
                                         text: 'Play',
                                         web_app: {
-                                            url: 'https://hq4vf3-91-149-142-24.ru.tuna.am'
+                                            url: 'https://time-to-futures.ru.tuna.am'
                                         }
                                     }]
                                 ]
