@@ -24,8 +24,7 @@ export class GoFuturesUserDTO {
 
     @ApiProperty({ example: 20304056, description: 'all users coins ' })
     @IsNumber() @IsNotEmpty()
-    readonly TTFUserCoins: number
-
+    readonly TTFSpentUserCoins: number
 
     @ApiProperty({ example: 20304056, description: 'coins right now' })
     @IsNumber() @IsNotEmpty()

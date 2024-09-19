@@ -22,7 +22,7 @@ export class AI_User {
     isPremium: boolean
 
     @Prop({ type: Number, default: 0 })
-    TTFUserCoins: number
+    TTFSpentUserCoins: number
 
     @Prop({ type: Number, default: 0 })
     TTFEarnedUserCoins: number
