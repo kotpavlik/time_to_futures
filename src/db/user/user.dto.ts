@@ -22,11 +22,11 @@ export class GoFuturesUserDTO {
     @IsBoolean() @IsNotEmpty()
     readonly isPremium: boolean
 
-    @ApiProperty({ example: 20304056, description: 'all users coins ' })
+    @ApiProperty({ example: 20304056, description: 'spent coins' })
     @IsNumber() @IsNotEmpty()
     readonly TTFSpentUserCoins: number
 
-    @ApiProperty({ example: 20304056, description: 'coins right now' })
+    @ApiProperty({ example: 20304056, description: 'cearned coins' })
     @IsNumber() @IsNotEmpty()
     readonly TTFEarnedUserCoins: number
 
@@ -42,7 +42,6 @@ export class GoFuturesUserDTO {
     @IsString()
     readonly my_referal_link: string
 
-
     @ApiProperty({ example: 123414125, description: 'person who invite you' })
     @IsNumber() @IsNotEmpty()
     readonly my_referer: number
@@ -55,4 +54,16 @@ export class GoFuturesUserDTO {
     @IsString() @IsNotEmpty()
     readonly authDate: string
 
+}
+
+export class UsersCoinsDTO {
+
+
+    @ApiProperty({ example: 20304056, description: 'earned coins' })
+    @IsNumber() @IsNotEmpty()
+    readonly coins: number
+
+    @ApiProperty({ example: 6399340874, description: 'telegram user id' })
+    @IsNumber() @IsNotEmpty()
+    readonly userId: number
 }
