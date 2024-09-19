@@ -15,7 +15,7 @@ export class UserService {
     async CheckUser(userData: GoFuturesUserDTO) {
         const UserData = await this.AI_UserBD.findOne({ userId: userData.userId })
         if (UserData === null) {
-            const createUser = await this.AI_UserBD.create({ ...userData, TTFSpentUserCoins: 200 })
+            const createUser = await this.AI_UserBD.create({ ...userData, TTFEarnedUserCoins: 200 })
             return createUser
         } else {
             return UserData
