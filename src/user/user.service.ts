@@ -30,7 +30,6 @@ export class UserService {
 
         if (coins_data.coins < 0) {
             const NotEnoughMoney = UserData.TTFEarnedUserCoins + UserData.TTFSpentUserCoins + coins_data.coins
-            console.log(NotEnoughMoney)
             if (NotEnoughMoney < 0) {
                 throw new HttpException('not enough money', HttpStatus.BAD_REQUEST)
             }
