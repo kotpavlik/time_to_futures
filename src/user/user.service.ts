@@ -27,14 +27,24 @@ export class UserService {
         if (UserData === null) {
             throw new HttpException('something wrong', HttpStatus.BAD_REQUEST)
         }
+
+        if (coins_data.coins < 0) {
+            const NotEnoughMoney = UserData.TTFEarnedUserCoins + UserData.TTFSpentUserCoins + coins_data.coins
+            console.log(NotEnoughMoney)
+            if (NotEnoughMoney < 0) {
+                throw new HttpException('not enough money', HttpStatus.BAD_REQUEST)
+            }
+        }
+
         if (coins_data.coins > 0) {
             const newEarnedCoins = UserData.TTFEarnedUserCoins + coins_data.coins
-            const newUserData = await this.AI_UserBD.findOneAndUpdate({ userId: coins_data.userId }, { TTFEarnedUserCoins: newEarnedCoins })
+            const newUserData = await this.AI_UserBD.findOneAndUpdate({ userId: coins_data.userId }, { TTFEarnedUserCoins: newEarnedCoins }, { new: true })
             return newUserData
         }
+
         if (coins_data.coins < 0) {
             const newSpentdCoins = UserData.TTFSpentUserCoins + coins_data.coins
-            const newUserData = await this.AI_UserBD.findOneAndUpdate({ userId: coins_data.userId }, { TTFSpentUserCoins: newSpentdCoins })
+            const newUserData = await this.AI_UserBD.findOneAndUpdate({ userId: coins_data.userId }, { TTFSpentUserCoins: newSpentdCoins }, { new: true })
             return newUserData
         }
 
