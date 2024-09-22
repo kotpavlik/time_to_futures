@@ -18,7 +18,7 @@ export class AI_User {
     @Prop({ type: String, required: true })
     userName: string
 
-    @Prop({ type: Boolean, required: true })
+    @Prop({ type: Boolean })
     isPremium: boolean
 
     @Prop({ type: Number, default: 0 })
@@ -29,7 +29,6 @@ export class AI_User {
 
     @Prop({ type: Number, default: 1 })
     LVL: number
-
 
     @Prop({ type: Number, default: 0 })
     successQuestion: number

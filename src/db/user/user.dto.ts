@@ -18,7 +18,7 @@ export class GoFuturesUserDTO {
     @IsString() @IsNotEmpty()
     readonly userName: string
 
-    @ApiProperty({ example: true, description: 'check telegram premium' })
+    @ApiProperty({ example: true, default: false, description: 'check telegram premium' })
     @IsBoolean() @IsNotEmpty()
     readonly isPremium: boolean
 
