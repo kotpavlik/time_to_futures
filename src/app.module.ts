@@ -6,6 +6,7 @@ import { AI_User, AI_UserDBSchema } from './db/user/user.model';
 import { BotService } from './bot/bot.service';
 import { AppController } from './app.contreller';
 import { UserModule } from './user/user.module';
+import { QuestionModule } from './question/question.module';
 
 
 
@@ -15,9 +16,10 @@ import { UserModule } from './user/user.module';
   MongooseModule.forRoot(process.env.MONGO_DB_URI),
   MongooseModule.forFeature([{ name: AI_User.name, schema: AI_UserDBSchema }]
   ),
-    UserModule
+    UserModule,
+    QuestionModule
   ],
   controllers: [AppController],
-  providers: [BotService, AppService,],
+  providers: [BotService, AppService],
 })
 export class AppModule { }
