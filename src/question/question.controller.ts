@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, Res } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { GoFuturesQuestionsDTO } from 'src/db/questions/questions.dto';
 import { Response, Request } from 'express';
@@ -9,10 +9,10 @@ export class QuestionController {
   constructor(private readonly questionService: QuestionService) { }
 
   @Post()
-  async create(@Body() createQuestionDto: GoFuturesQuestionsDTO, res: Response) {
+  async create(@Body() createQuestionDto: GoFuturesQuestionsDTO, @Res() res: Response) {
     try {
       const newQuestion = await this.questionService.create(createQuestionDto)
-      return res.cookie("user", newQuestion, {
+      return res.cookie("questions", newQuestion, {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
         secure: true
@@ -28,8 +28,21 @@ export class QuestionController {
 
 
   @Get()
-  findAll() {
-    return this.questionService.findAll();
+  async getAllQuestions(@Res() res: Response) {
+    try {
+      const AllQuestions = await this.questionService.findAll()
+      return res.cookie("questions", AllQuestions, {
+        httpOnly: true,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        secure: true
+      }).status(201).json(AllQuestions)
+    } catch (e) {
+      if (e instanceof HttpException) {
+        return res.status(e.getStatus()).json({ error: e.getResponse() });
+      } else {
+        return res.status(500).json({ error: e.message });
+      }
+    }
   }
 
   @Get(':id')

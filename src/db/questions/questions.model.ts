@@ -2,9 +2,16 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
 
 
-export enum AnswerType {
+export enum AnswerTypeEnum {
     CHOOSE = 'choose',
-    WRITE = 'write'
+    WRITE = 'write',
+    TRUEORFALSE = 'trueorfalse'
+}
+export enum QuestionsThemeEnum {
+    EXCHANGE = 'exchange',
+    THEORY = 'theory',
+    PSYCHOLOGY = 'psyhology',
+    STRATEGY = 'strategy'
 }
 
 export class ChooseAnswers {
@@ -20,20 +27,26 @@ export class ChooseAnswers {
 @Schema()
 export class AI_Questions {
 
-    @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-    userMongoId: Types.ObjectId;
+    @Prop({ type: String, enum: AnswerTypeEnum, required: true })
+    answerType: AnswerTypeEnum
 
-    @Prop({ type: String, enum: AnswerType, required: true })
-    answerType: AnswerType
+    @Prop({ type: String, enum: QuestionsThemeEnum, required: true })
+    questionsTheme: QuestionsThemeEnum
 
-    @Prop({ type: String, required: true, minlength: 5, trim: true })
+    @Prop({ type: String, required: true, minlength: 5 })
     question: string
 
     @Prop({ type: [ChooseAnswers], validate: [arrayLimit, '{PATH} exceeds the limit of 4'] })
     chooseAnswers: ChooseAnswers[]
 
-    @Prop({ type: String, trim: true, minlength: 1 })
+    @Prop({ type: String, trim: true, minlength: 3 })
     writeSuccessAnswer: string | null
+
+    @Prop({ type: Boolean })
+    trueOrFalse: boolean
+
+    @Prop({ type: Number, required: true, default: 10 })
+    TTFCoins: number
 
 
 

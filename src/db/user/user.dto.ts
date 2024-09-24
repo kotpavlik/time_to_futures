@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Types } from "mongoose";
 
 export class GoFuturesUserDTO {
     @ApiProperty({ example: 6399340874, description: 'telegram user id' })
@@ -53,6 +54,10 @@ export class GoFuturesUserDTO {
     @ApiProperty({ example: '12312424654745234145', description: 'auth date' })
     @IsString() @IsNotEmpty()
     readonly authDate: string
+
+    @ApiProperty({ example: '12312424654745234145', description: 'id of true answers' })
+    @IsString()
+    readonly correctAnswers: Types.ObjectId[]
 
 }
 

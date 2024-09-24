@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 
 
@@ -44,6 +44,9 @@ export class AI_User {
 
     @Prop({ type: String, required: true })
     authDate: string
+
+    @Prop({ type: [Types.ObjectId], ref: 'AI_Questions', default: [] })
+    correctAnswers: Types.ObjectId[];
 
 }
 
