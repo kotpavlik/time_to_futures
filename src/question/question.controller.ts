@@ -12,11 +12,7 @@ export class QuestionController {
   async create(@Body() createQuestionDto: GoFuturesQuestionsDTO, @Res() res: Response) {
     try {
       const newQuestion = await this.questionService.create(createQuestionDto)
-      return res.cookie("questions", newQuestion, {
-        httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        secure: true
-      }).status(201).json(newQuestion)
+      return res.status(201).json(newQuestion)
     } catch (e) {
       if (e instanceof HttpException) {
         return res.status(e.getStatus()).json({ error: e.getResponse() });
@@ -31,11 +27,7 @@ export class QuestionController {
   async getAllQuestions(@Res() res: Response) {
     try {
       const AllQuestions = await this.questionService.findAll()
-      return res.cookie("questions", AllQuestions, {
-        httpOnly: true,
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        secure: true
-      }).status(201).json(AllQuestions)
+      return res.status(201).json(AllQuestions)
     } catch (e) {
       if (e instanceof HttpException) {
         return res.status(e.getStatus()).json({ error: e.getResponse() });
