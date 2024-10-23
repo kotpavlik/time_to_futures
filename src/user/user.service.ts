@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { BotService } from 'src/bot/bot.service';
-import { GoFuturesUserDTO, UsersCoinsDTO } from 'src/db/user/user.dto';
+import { GoFuturesUserDTO, UsersCoinsDTO, UsersLvLDTO } from 'src/db/user/user.dto';
 import { AI_User } from 'src/db/user/user.model';
 
 @Injectable()
@@ -47,5 +47,16 @@ export class UserService {
             return newUserData
         }
 
+    }
+    async UpdateLvL(lvl_data: UsersLvLDTO) {
+        const UserData = await this.AI_UserBD.findOne({ userId: lvl_data.userId })
+        if (UserData === null) {
+            throw new HttpException('something wrong', HttpStatus.BAD_REQUEST)
+        }
+        if (UserData.LVL > lvl_data.lvl) {
+            throw new HttpException('your lvl cooler', HttpStatus.BAD_GATEWAY)
+        }
+        const newUserData = await this.AI_UserBD.findOneAndUpdate({ userId: lvl_data.userId }, { LVL: lvl_data.lvl }, { new: true })
+        return newUserData
     }
 }

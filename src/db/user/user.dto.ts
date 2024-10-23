@@ -72,3 +72,15 @@ export class UsersCoinsDTO {
     @IsNumber() @IsNotEmpty()
     readonly userId: number
 }
+
+export class UsersLvLDTO {
+
+
+    @ApiProperty({ example: 20304056, description: 'earned coins' })
+    @IsNumber() @IsNotEmpty()
+    readonly lvl: number
+
+    @ApiProperty({ example: 6399340874, description: 'telegram user id' })
+    @IsNumber() @IsNotEmpty()
+    readonly userId: number
+}

@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Post, Put, Res } from '@nestjs/common';
 import { Response, Request } from 'express';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { GoFuturesUserDTO, UsersCoinsDTO } from 'src/db/user/user.dto';
+import { GoFuturesUserDTO, UsersCoinsDTO, UsersLvLDTO } from 'src/db/user/user.dto';
 import { UserService } from './user.service';
 
 @Controller('')
@@ -50,7 +50,31 @@ export class UserController {
       }
     }
   }
+
+  @Put('update_lvl')
+  @ApiOperation({ summary: 'update user lvl' })
+  @ApiResponse({ status: HttpStatus.CREATED, type: GoFuturesUserDTO })
+
+  async updateUserLvL(@Body() lvl_data: UsersLvLDTO, @Res() res: Response) {
+    try {
+      const AI_User = await this.userService.UpdateLvL(lvl_data)
+      return res.cookie("user", AI_User, {
+        httpOnly: true,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        secure: true
+      }).status(201).json(AI_User)
+    } catch (e) {
+      if (e instanceof HttpException) {
+        return res.status(e.getStatus()).json({ error: e.getResponse() });
+      } else {
+        return res.status(500).json({ error: e.message });
+      }
+    }
+  }
+
 }
+
+
 
 
 
