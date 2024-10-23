@@ -54,7 +54,7 @@ export class UserService {
             throw new HttpException('something wrong', HttpStatus.BAD_REQUEST)
         }
         if (UserData.LVL > lvl_data.lvl) {
-            throw new HttpException('your lvl cooler', HttpStatus.BAD_GATEWAY)
+            return
         }
         const newUserData = await this.AI_UserBD.findOneAndUpdate({ userId: lvl_data.userId }, { LVL: lvl_data.lvl }, { new: true })
         return newUserData
