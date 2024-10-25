@@ -53,6 +53,7 @@ export class UserService {
         if (UserData === null) {
             throw new HttpException('something wrong', HttpStatus.BAD_REQUEST)
         }
+
         if (UserData.LVL > lvl_data.lvl) {
             return
         }
