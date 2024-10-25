@@ -55,7 +55,7 @@ export class UserService {
         }
 
         if (UserData.LVL > lvl_data.lvl) {
-            return
+            return UserData
         }
         const newUserData = await this.AI_UserBD.findOneAndUpdate({ userId: lvl_data.userId }, { LVL: lvl_data.lvl }, { new: true })
         return newUserData
