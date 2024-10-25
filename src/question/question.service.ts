@@ -31,13 +31,20 @@ export class QuestionService {
     throw new HttpException('Amm ... where questions?', HttpStatus.BAD_GATEWAY)
   }
 
-  findOne(id: number) {
+  async update(id: string, update_data: GoFuturesQuestionsDTO) {
+    const find_question = await this.AI_QuestionsBD.findOne({ _id: id })
+    if (find_question) {
+      const new_question = await this.AI_QuestionsBD.findOneAndUpdate({ _id: id }, { ...update_data }, { new: true })
+      return new_question
+    }
+    return find_question
+  }
+
+  async(id: number) {
     return `This action returns a #${id} question`;
   }
 
-  update(id: number, updateQuestionDto: GoFuturesQuestionsDTO) {
-    return `This action updates a #${id} question`;
-  }
+
 
   remove(id: number) {
     return `This action removes a #${id} question`;

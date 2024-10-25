@@ -27,8 +27,13 @@ export class GoFuturesQuestionsDTO {
     @IsBoolean()
     trueOrFalse: boolean
 
+    @ApiProperty({ example: false, description: 'success question or no' })
+    @IsBoolean()
+    verified: boolean
+
     @ApiProperty({ example: 150, description: 'coins which you get if you right' })
     @IsNumber() @IsNotEmpty()
     TTFCoins: number
 
 }
+

@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, Res, Put, HttpStatus } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { GoFuturesQuestionsDTO } from 'src/db/questions/questions.dto';
 import { Response, Request } from 'express';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 
 @Controller('question')
@@ -37,15 +38,23 @@ export class QuestionController {
     }
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.questionService.findOne(+id);
+  @Put()
+  @ApiOperation({ summary: 'update question' })
+  @ApiResponse({ status: HttpStatus.CREATED, type: GoFuturesQuestionsDTO })
+  async updateQuestion(@Body() body: { update_data: GoFuturesQuestionsDTO, id: string }, @Res() res: Response) {
+    try {
+      const newQuestion = await this.questionService.update(body.id, body.update_data)
+      return res.status(201).json(newQuestion)
+    } catch (e) {
+      if (e instanceof HttpException) {
+        return res.status(e.getStatus()).json({ error: e.getResponse() });
+      } else {
+        return res.status(500).json({ error: e.message });
+      }
+    }
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateQuestionDto: GoFuturesQuestionsDTO) {
-    return this.questionService.update(+id, updateQuestionDto);
-  }
+
 
   @Delete(':id')
   remove(@Param('id') id: string) {

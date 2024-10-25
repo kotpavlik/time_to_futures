@@ -45,6 +45,9 @@ export class AI_Questions {
     @Prop({ type: Boolean })
     trueOrFalse: boolean
 
+    @Prop({ type: Boolean, default: false })
+    verified: boolean
+
     @Prop({ type: Number, required: true, default: 10 })
     TTFCoins: number
 
