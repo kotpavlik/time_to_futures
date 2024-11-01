@@ -33,6 +33,7 @@ export class QuestionService {
 
   async update(id: string, update_data: GoFuturesQuestionsDTO) {
     const find_question = await this.AI_QuestionsBD.findOne({ _id: id })
+
     if (find_question) {
       const new_question = await this.AI_QuestionsBD.findOneAndUpdate({ _id: id }, { ...update_data }, { new: true })
       return new_question

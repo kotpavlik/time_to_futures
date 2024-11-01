@@ -23,7 +23,8 @@
       ],
       "@app/googlesheets/*": [
         "libs/googlesheets/src/*"
-      ]
+      ],
+       
     }
   }
 }

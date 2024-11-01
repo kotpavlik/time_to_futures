@@ -8,6 +8,9 @@ import { AppController } from './app.contreller';
 import { UserModule } from './user/user.module';
 import { QuestionModule } from './question/question.module';
 
+import { MexcModule } from './exchanges/mexc/mexc.module';
+import { MexcService } from './exchanges/mexc/mexc.service';
+
 
 
 
