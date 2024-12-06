@@ -37,7 +37,7 @@ export class AI_User {
     my_referal_link: string
 
     @Prop({ type: Number })
-    my_referer: number
+    my_ref_invite_id: number
 
     @Prop({ type: String })
     wallet_addres: string

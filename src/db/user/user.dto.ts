@@ -40,12 +40,12 @@ export class GoFuturesUserDTO {
     readonly successQuestion: number
 
     @ApiProperty({ example: 'https://t.me/go_to_futures?opendapp=23526536463', description: 'my referal link' })
-    @IsString()
+    @IsString() @IsNotEmpty()
     readonly my_referal_link: string
 
     @ApiProperty({ example: 123414125, description: 'person who invite you' })
-    @IsNumber() @IsNotEmpty()
-    readonly my_referer: number
+    @IsNumber()
+    readonly my_ref_invite_id: number
 
     @ApiProperty({ example: 'qwDwe_2323fsdasfr_sdbfret', description: 'telegram wallet address' })
     @IsString()
@@ -75,11 +75,16 @@ export class UsersCoinsDTO {
 
 export class UsersLvLDTO {
 
-
     @ApiProperty({ example: 20304056, description: 'earned coins' })
     @IsNumber() @IsNotEmpty()
     readonly lvl: number
 
+    @ApiProperty({ example: 6399340874, description: 'telegram user id' })
+    @IsNumber() @IsNotEmpty()
+    readonly userId: number
+}
+
+export class UserReferalsDTO {
     @ApiProperty({ example: 6399340874, description: 'telegram user id' })
     @IsNumber() @IsNotEmpty()
     readonly userId: number

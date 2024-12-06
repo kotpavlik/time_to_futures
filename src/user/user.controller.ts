@@ -1,12 +1,28 @@
 import { Body, Controller, Get, HttpException, HttpStatus, Post, Put, Res } from '@nestjs/common';
 import { Response, Request } from 'express';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { GoFuturesUserDTO, UsersCoinsDTO, UsersLvLDTO } from 'src/db/user/user.dto';
+import { GoFuturesUserDTO, UserReferalsDTO, UsersCoinsDTO, UsersLvLDTO } from 'src/db/user/user.dto';
 import { UserService } from './user.service';
 
 @Controller('')
 export class UserController {
   constructor(private readonly userService: UserService) { }
+
+  @Get('get_referals')
+  @ApiOperation({ summary: 'get referals data' })
+  @ApiResponse({ status: HttpStatus.CREATED, type: GoFuturesUserDTO })
+  async getReferalsData(@Body() dto: UserReferalsDTO, @Res() res: Response) {
+    try {
+      const user_referals = await this.userService.GetReferals(dto)
+      return res.cookie("user", user_referals, {
+        httpOnly: true,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        secure: true
+      }).status(201).json(user_referals)
+    } catch (error) {
+
+    }
+  }
 
   @Post('check_user')
   @ApiOperation({ summary: 'initial user' })
