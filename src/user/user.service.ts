@@ -21,7 +21,6 @@ export class UserService {
                     ...userData,
                     my_ref_invite_id: null,
                 };
-                console.log(userData)
                 const createUser = await this.AI_UserBD.create(userData)
                 return createUser
             } else {
