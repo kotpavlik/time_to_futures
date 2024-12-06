@@ -8,10 +8,11 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
-  @Get('get_referals')
+  @Post('get_referals')
   @ApiOperation({ summary: 'get referals data' })
   @ApiResponse({ status: HttpStatus.CREATED, type: GoFuturesUserDTO })
   async getReferalsData(@Body() dto: UserReferalsDTO, @Res() res: Response) {
+
     try {
       const user_referals = await this.userService.GetReferals(dto)
       return res.cookie("user", user_referals, {

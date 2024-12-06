@@ -19,7 +19,7 @@ export class BotService implements OnModuleInit {
             try {
                 if (msg.text == '/start') {
 
-                    await bot.sendMessage(msg.chat.id, `<b> Привет, ${msg.from.first_name ? msg.from.first_name : msg.from.username} 👾 </b> \n Жми <b>GO</b>  🚀 чтобы начать или жми <b>PLAY</b>`,
+                    await bot.sendMessage(msg.chat.id, `<b> Привет, ${msg.from.first_name ? msg.from.first_name : msg.from.username} 👾 </b> \n Жми <b>GO</b>  🚀 чтобы начать или жми хуй <b>PLAY</b>`,
                         {
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,

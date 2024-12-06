@@ -23,8 +23,9 @@ export class UserService {
         }
     }
 
-    async GetReferals(user_data: UserReferalsDTO) {
-        const { userId } = user_data
+    async GetReferals(user_data_id: UserReferalsDTO) {
+        const { userId } = user_data_id
+        console.log(userId)
         if (userId) {
             const Referals = await this.AI_UserBD.find({ my_ref_invite_id: userId })
             return Referals
