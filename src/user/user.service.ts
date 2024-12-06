@@ -13,11 +13,22 @@ export class UserService {
     ) { }
 
     async CheckUser(userData: GoFuturesUserDTO) {
-        const UserData = await this.AI_UserBD.findOne({ userId: userData.userId })
+        const UserData: GoFuturesUserDTO = await this.AI_UserBD.findOne({ userId: userData.userId })
         if (UserData === null) {
 
-            const createUser = await this.AI_UserBD.create(userData)
-            return createUser
+            if (userData.userId === userData.my_ref_invite_id) {
+                userData = {
+                    ...userData,
+                    my_ref_invite_id: null,
+                };
+                console.log(userData)
+                const createUser = await this.AI_UserBD.create(userData)
+                return createUser
+            } else {
+                const createUser = await this.AI_UserBD.create(userData)
+                return createUser
+            }
+
         } else {
             return UserData
         }

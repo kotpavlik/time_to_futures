@@ -45,7 +45,7 @@ export class GoFuturesUserDTO {
 
     @ApiProperty({ example: 123414125, description: 'person who invite you' })
     @IsNumber()
-    readonly my_ref_invite_id: number
+    readonly my_ref_invite_id: number | null
 
     @ApiProperty({ example: 'qwDwe_2323fsdasfr_sdbfret', description: 'telegram wallet address' })
     @IsString()
