@@ -29,6 +29,17 @@ export class UserService {
             }
 
         } else {
+            if (UserData.firstName !== userData.firstName || UserData.lastName !== userData.lastName || UserData.userName !== userData.userName) {
+
+
+                console.log(UserData)
+                const createUser = await this.AI_UserBD.findOneAndUpdate({ userId: userData.userId }, {
+                    firstName: userData.firstName,
+                    lastName: userData.lastName,
+                    userName: userData.userName
+                })
+                return createUser
+            }
             return UserData
         }
     }
