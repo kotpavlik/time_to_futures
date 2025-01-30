@@ -22,7 +22,13 @@ async function bootstrap() {
   app.use((req, res, next) => {
     res.setHeader(
       'Content-Security-Policy',
-      "frame-src 'self' https://tonkeeper.com https://time-to-futures.ru.tuna.am;"
+      "default-src 'self'; " +
+      "frame-src 'self' https://tonkeeper.com https://*.tonhub.com https://*.t.me; " +
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://tonkeeper.com; " +
+      "connect-src 'self' https://tonkeeper.com https://api.tonkeeper.com; " +
+      "img-src 'self' data: https://tonkeeper.com; " +
+      "style-src 'self' 'unsafe-inline'; " +
+      "font-src 'self' data:;"
     );
     next();
   });
