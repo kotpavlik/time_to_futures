@@ -11,13 +11,21 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
       origin:
-        ['https://localhost:5173/', 'https://time-to-futures.ru.tuna.am', 'https://time-to-futures-tma.vercel.app', 'https://pro-api.coinmarketcap.com/v1'],
+        ['https://localhost:5173/', 'https://time-to-futures.ru.tuna.am', 'https://time-to-futures-tma.vercel.app'],
       credentials: true,
       allowedHeaders: ['Content-Type', 'Authorization'],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     }
   });
   console.log(`we are listen port ${PORT}`);
+
+  app.use((req, res, next) => {
+    res.setHeader(
+      'Content-Security-Policy',
+      "frame-src 'self' https://tonkeeper.com https://time-to-futures.ru.tuna.am;"
+    );
+    next();
+  });
 
   app.use(cookieParser());
 
