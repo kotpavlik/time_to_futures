@@ -19,7 +19,7 @@ export class BotService implements OnModuleInit {
             try {
                 if (msg.text == '/start') {
 
-                    await bot.sendMessage(msg.chat.id, `<b> Привет, ${msg.from.first_name ? msg.from.first_name : msg.from.username} 👾 </b> \n Жми <b>GO</b>  🚀 чтобы начать или жми хуй <b>PLAY</b>`,
+                    await bot.sendMessage(msg.chat.id, `<b> Привет, ${msg.from.first_name ? msg.from.first_name : msg.from.username} 👾 </b> \n Жми <b>GO</b>  🚀 чтобы начать или жми <b>PLAY</b>`,
                         {
                             parse_mode: 'HTML',
                             disable_web_page_preview: true,
@@ -28,13 +28,32 @@ export class BotService implements OnModuleInit {
                                     [{
                                         text: 'Play',
                                         web_app: {
+                                            url: 'https://time-to-futures-tma.vercel.app'
+                                        }
+                                    }]
+                                ]
+                            }
+                        });
+                }
+                if (msg.text == '/dev') {
+
+                    await bot.sendMessage(msg.chat.id, `<b>Режим разработки</b> \n Нажмите <b>DEV</b> ниже, чтобы открыть локальный сервер.`,
+                        {
+                            parse_mode: 'HTML',
+                            disable_web_page_preview: true,
+                            reply_markup: {
+                                inline_keyboard: [
+                                    [{
+                                        text: 'DEV',
+                                        web_app: {
                                             url: 'https://time-to-futures.ru.tuna.am'
                                         }
                                     }]
                                 ]
                             }
-                        },);
+                        });
                 }
+
             }
             catch (error) {
 
