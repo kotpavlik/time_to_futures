@@ -30,9 +30,6 @@ export class UserService {
 
         } else {
             if (UserData.firstName !== userData.firstName || UserData.lastName !== userData.lastName || UserData.userName !== userData.userName) {
-
-
-                console.log(UserData)
                 const createUser = await this.AI_UserBD.findOneAndUpdate({ userId: userData.userId }, {
                     firstName: userData.firstName,
                     lastName: userData.lastName,
@@ -46,7 +43,6 @@ export class UserService {
 
     async GetReferals(user_data_id: UserReferalsDTO) {
         const { userId } = user_data_id
-        console.log(userId)
         if (userId) {
             const Referals = await this.AI_UserBD.find({ my_ref_invite_id: userId })
             return Referals
