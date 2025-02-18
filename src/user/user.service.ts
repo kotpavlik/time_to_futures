@@ -22,7 +22,8 @@ export class UserService {
                     my_ref_invite_id: null,
                 };
                 const createUser = await this.AI_UserBD.create(userData)
-                await this.botService.sendWelcomeMessage(userData.userId)
+                if (createUser) await this.botService.sendWelcomeMessage(userData.userId)
+
                 return createUser
             } else {
                 const createUser = await this.AI_UserBD.create(userData)

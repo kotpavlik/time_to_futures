@@ -70,6 +70,7 @@ export class BotService implements OnModuleInit {
 
     async sendWelcomeMessage(userId: number) {
         try {
+            console.log(userId)
             await this.bot.sendMessage(
                 userId,
                 `<b>Привет! 👾</b> \n Вы перешли по реферальной. Добро пожаловать в наше сообщество! 🚀`,
