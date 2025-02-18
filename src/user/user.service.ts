@@ -7,7 +7,7 @@ import { AI_User } from 'src/db/user/user.model';
 
 @Injectable()
 export class UserService {
-    private readonly BotService: BotService
+    private readonly botService: BotService
     constructor(
         @InjectModel(AI_User.name) private AI_UserBD: Model<AI_User>
     ) { }
@@ -22,6 +22,7 @@ export class UserService {
                     my_ref_invite_id: null,
                 };
                 const createUser = await this.AI_UserBD.create(userData)
+                await this.botService.sendWelcomeMessage(userData.userId)
                 return createUser
             } else {
                 const createUser = await this.AI_UserBD.create(userData)
