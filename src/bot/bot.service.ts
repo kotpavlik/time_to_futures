@@ -68,11 +68,11 @@ export class BotService implements OnModuleInit {
         });
     }
 
-    async sendWelcomeMessage(userId: number, refParam: string) {
+    async sendWelcomeMessage(userId: number) {
         try {
             await this.bot.sendMessage(
                 userId,
-                `<b>Привет! 👾</b> \n Вы перешли по реферальной ссылке: ${refParam}. Добро пожаловать в наше сообщество! 🚀`,
+                `<b>Привет! 👾</b> \n Вы перешли по реферальной. Добро пожаловать в наше сообщество! 🚀`,
                 {
                     parse_mode: 'HTML',
                     disable_web_page_preview: true,
@@ -82,4 +82,5 @@ export class BotService implements OnModuleInit {
             console.error('Ошибка при отправке приветственного сообщения:', error);
         }
     }
+
 }
